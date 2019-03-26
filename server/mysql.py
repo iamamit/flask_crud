@@ -29,32 +29,31 @@ def index():
 
 
 
-
 @app.route('/user/register',methods=['POST'])
 def register():
     try:
-       # cur=mysql.connection.cursor()
-        #print(cur)
-        # first=request.get_json()['first_name']
-        # last=request.get_json()['last_name']
-        # email=request.get_json()['email']
-        # password=bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
-        # created=datetime.utcnow()
-        #cur.execute('insert into users(first_name,last_name,email,password,created) values(%s,%s,%s,%s,%s)',(str(first),str(last),str(email),str(password),str(created)))
-        #query="insert into users(first_name,last_name,email,password,created) values('"+str(first)+"','"+str(last)+"','"+str(email)+"','"+str(password)+"','"+str(created)+"')"
-        #print(query)
-        # cur.execute(query)
-        # mysql.connection.commit()
+        cur=mysql.connection.cursor()
+        print(cur)
+        first=request.get_json()['first_name']
+        last=request.get_json()['last_name']
+        email=request.get_json()['email']
+        password=bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
+        created=datetime.utcnow()
+        cur.execute('insert into users(first_name,last_name,email,password,created) values(%s,%s,%s,%s,%s)',(str(first),str(last),str(email),str(password),str(created)))
+        query="insert into users(first_name,last_name,email,password,created) values('"+str(first)+"','"+str(last)+"','"+str(email)+"','"+str(password)+"','"+str(created)+"')"
+        print(query)
+        cur.execute(query)
+        mysql.connection.commit()
 
-        # result={
-        #     'first_name':first,
-        #     'last_name':last,
-        #     'email':email,
-        #     'password':password,
-        #     'created':created
-        # }
-        # print(result)
-        # return jsonify({'result':result})
+        result={
+             'first_name':first,
+             'last_name':last,
+             'email':email,
+             'password':password,
+             'created':created
+         }
+        print(result)
+        return jsonify({'result':result})
         
     except Exception as e:
         print(e)
