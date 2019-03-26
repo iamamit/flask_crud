@@ -13,7 +13,7 @@ app.config['MYSQL_USER']='root'
 app.config['MYSQL_PASSWORD']='medtronic'
 app.config['MYSQL_DB']='crud_application_python'
 app.config['MYSQL_HOST']='localhost'
-#app.config['MYSQL_CURSORCLASS']='DictCursor'
+app.config['MYSQL_CURSORCLASS']='DictCursor'
 #app.config['MYSQL_PORT']='3306'
 app.config['JWT_SECRET_KEY']='secret'
 
@@ -52,8 +52,10 @@ def register():
              'password':password,
              'created':created
          }
-        print(result)
+        
         return jsonify({'result':result})
+
+        #return "Hello"
         
     except Exception as e:
         print(e)
